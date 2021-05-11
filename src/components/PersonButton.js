@@ -1,8 +1,7 @@
-import React from 'react' 
+import React from "react";
 
-function PersonButton ({person}) {
-
-    return <button>{person}</button> 
+function PersonButton({ person, onCurrentP }) {
+  return <button onClick={() => onCurrentP(person.id)}>{person.name}</button>;
 }
 
-export default PersonButton 
+export default PersonButton;

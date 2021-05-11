@@ -1,19 +1,16 @@
-import React from 'react'
-import Link from 'react-router-dom'
-import PersonCard from './PersonCard'
-import PersonButton from './PersonButton'
+import React from "react";
+import Link from "react-router-dom";
 
-function PersonList({ persons }) {
+import PersonButton from "./PersonButton";
 
-    const personButtons = persons.map(person => {
-        return <PersonButton person={person}/>
-    })
+function PersonList({ people, onCurrentP }) {
+  const personButtons = people.map((person) => {
+    return (
+      <PersonButton key={person.id} person={person} onCurrentP={onCurrentP} />
+    );
+  });
 
-return (
-    <div>
-            {personButtons}
-    </div>
-        
-)}
+  return <div>{personButtons}</div>;
+}
 
-export default PersonList
+export default PersonList;
