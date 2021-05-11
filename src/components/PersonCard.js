@@ -1,8 +1,10 @@
 
+import ClockComponent from './Clock'
+
 
 function PersonCard() {
 
-    return null 
+    return <ClockComponent/>
 }
 
 

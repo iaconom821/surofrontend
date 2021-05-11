@@ -1,8 +1,19 @@
+import React from 'react'
+import Link from 'react-router-dom'
+import PersonCard from './PersonCard'
+import PersonButton from './PersonButton'
 
+function PersonList({ persons }) {
 
-function PersonList() {
+    const personButtons = persons.map(person => {
+        return <PersonButton person={person}/>
+    })
 
-return null
-}
+return (
+    <div>
+            {personButtons}
+    </div>
+        
+)}
 
 export default PersonList
