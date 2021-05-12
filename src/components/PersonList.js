@@ -3,10 +3,15 @@ import Link from "react-router-dom";
 
 import PersonButton from "./PersonButton";
 
-function PersonList({ people, onCurrentP }) {
+function PersonList({ people, onCurrentP, onClickPerson }) {
   const personButtons = people.map((person) => {
     return (
-      <PersonButton key={person.id} person={person} onCurrentP={onCurrentP} />
+      <PersonButton
+        onClickPerson={onClickPerson}
+        key={person.id}
+        person={person}
+        onCurrentP={onCurrentP}
+      />
     );
   });
 

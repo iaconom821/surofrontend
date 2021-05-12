@@ -10,6 +10,7 @@ import { useState } from "react";
 function AddRoundForm({ people, onForceReload, id }) {
   const [roundPrice, setRoundPrice] = useState("");
   const [peopleDrinking, setPeopleDrinking] = useState([]);
+
   const filterArr = people.filter((person) => person.id !== id);
   const selectPeople = filterArr.map((person) => {
     return { value: `${person.id}`, label: `${person.name}` };
@@ -27,7 +28,10 @@ function AddRoundForm({ people, onForceReload, id }) {
         person_id: id,
         people_drinking: peopleDrinking,
       }),
-    }).then(onForceReload());
+    }).then((res) => onForceReload());
+    setRoundPrice("");
+
+    setPeopleDrinking([]);
   }
   return (
     <form onSubmit={handleSubmit}>
@@ -37,6 +41,7 @@ function AddRoundForm({ people, onForceReload, id }) {
         value={roundPrice}
         step=".01"
         onChange={(e) => setRoundPrice(e.target.value)}
+        required
       />
       <Select isMulti options={selectPeople} onChange={handleSelections} />
       <input type="submit" value="Buy The Round" />

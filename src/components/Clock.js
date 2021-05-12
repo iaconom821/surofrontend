@@ -1,9 +1,15 @@
-import React from 'react'
+import React from "react";
 
-import Clock from 'react-live-clock';
+import Clock from "react-live-clock";
+import styled from "styled-components";
 
+const StyledClock = styled(Clock)`
+  font-size: 50px;
+`;
 export default class ClockComponent extends React.Component {
-    render() {
-        return <Clock format={'hh:mm A'} ticking={true} timezone={'US/Eastern'} />
-    }
+  render() {
+    return (
+      <StyledClock format={"hh:mm A"} ticking={true} timezone={"US/Eastern"} />
+    );
+  }
 }
