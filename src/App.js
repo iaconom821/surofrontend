@@ -45,21 +45,14 @@ function App() {
     setCurrentP(roundAndPRArr[2].find((person) => person.id === currentP.id));
   }
 
-  function forceReload(data) {
-    setRoundsArr([...roundsArr, data[0].newRound]);
-    setPeopleArr(
-      peopleArr.map((pep) => {
-        if (pep.id === data[1].person.id) {
-          return data[1].person;
-        } else {
-          return pep;
-        }
-      })
-    );
-    setCurrentP(data[1].person);
-    setPersonRoundsArr([...personRoundsArr, ...data[2]]);
-  }
+  // function forceReload(roundAndPRArr) {
+  //   setRoundsArr(roundAndPRArr[0]);
+  //   setPersonRoundsArr(roundAndPRArr[1]);
+  //   setPeopleArr(roundAndPRArr[2]);
+  //   setCurrentP(roundAndPRArr[2].find((person) => person.id === currentP.id));
+  // }
   function handleCurrentP(id) {
+    console.log(peopleArr)
     const thisP = peopleArr.find((person) => person.id === parseInt(id));
     setCurrentP(thisP);
   }
@@ -67,20 +60,12 @@ function App() {
   function handleDeleteRound(e) {
     fetch(`http://localhost:9393/rounds/${e.target.value}`, {
       method: "DELETE",
-    }).then(() => {
-      // let newCurrentP = currentP
-      // newCurrentP.total = newCurrentP.total - roundsArr.find(round => round.id === e.target.value).price
-      // newCurrentP.balance =
-      setRoundsArr(
-        roundsArr.filter((round) => round.id !== parseInt(e.target.value))
-      );
-      setPersonRoundsArr(
-        personRoundsArr.filter(
-          (personRound) => personRound.round_id !== parseInt(e.target.value)
-        )
-      );
-
-      setReload(!reload);
+    }).then(res => res.json())
+     .then(roundAndPRArr => {
+      setRoundsArr(roundAndPRArr[0]);
+      setPersonRoundsArr(roundAndPRArr[1]);
+      setPeopleArr(roundAndPRArr[2]);
+      setCurrentP(roundAndPRArr[2].find((person) => person.id === currentP.id));
     });
   }
 
@@ -101,7 +86,6 @@ function App() {
             <AddPersonForm onAddPerson={handleAddPerson} />
           </div>
           <PersonCard
-            onForceReload={forceReload}
             person={currentP}
             people={peopleArr}
             roundsArr={roundsArr}

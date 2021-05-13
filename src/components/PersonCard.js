@@ -16,12 +16,30 @@ const StyledPie = styled(PieChart)`
   text-align: center;
 `;
 const StyledPersonDiv = styled.div`
-  flex-grow: inherit;
+  width: 840px;
 `;
+
+const StyledPersonCardDiv = styled.div`
+  border: 2px solid darkgray;
+  margin: 3px;
+  border-radius: 4px;`
+
+const StyledRoundsPurchasedDiv = styled.div`
+  height: 200px;
+  overflow: auto;
+  display: flex;`
+
+const StyledAddRoundForm = styled.div`
+  width: 420px;
+  margin: 6px;`
+
+const StyledH1 = styled.h1`
+  font-size: 42px;
+  margin: 0px;`
+
 function PersonCard({
   person,
   people,
-  onForceReload,
   roundsArr,
   onDeleteRound,
   personRounds,
@@ -43,37 +61,41 @@ function PersonCard({
   return (
     <StyledDiv>
       <StyledPersonDiv>
-        <ClockComponent />
-        <h1>{person.name}</h1>
-        <h2>Total Spending so far is ${person.total}</h2>
-        {person.balance >= 0 ? (
-          <h2>You are owed ${person.balance.toFixed(2)}</h2>
-        ) : (
-          <h2>
-            {" "}
-            Hello, YOU OWE ${Math.abs(person.balance.toFixed(2))}... SquareUp!{" "}
-          </h2>
-        )}
-        <RoundsPurchased
-          personRounds={personRounds}
-          people={people}
-          onDeleteRound={onDeleteRound}
-          rounds={roundsArr}
-          person={person}
-          onRoundEdit={onRoundEdit}
-        />
+        <StyledPersonCardDiv>
+          <ClockComponent />
+          <StyledH1>{person.name}</StyledH1>
+          <h2>Total Spending so far is ${person.total}</h2>
+          {person.balance >= 0 ? (
+            <h2>You are owed ${person.balance.toFixed(2)}</h2>
+          ) : (
+            <h2>
+              {" "}
+              Hello, YOU OWE ${Math.abs(person.balance.toFixed(2))}... SquareUp!{" "}
+            </h2>
+          )}
+        </StyledPersonCardDiv>
+        <StyledRoundsPurchasedDiv>
+          <RoundsPurchased
+            personRounds={personRounds}
+            people={people}
+            onDeleteRound={onDeleteRound}
+            rounds={roundsArr}
+            person={person}
+            onRoundEdit={onRoundEdit}
+          />
+        </StyledRoundsPurchasedDiv>
       </StyledPersonDiv>
-      <div>
+      <StyledAddRoundForm>
         <AddRoundForm
           person={person}
-          onForceReload={onForceReload}
+          onForceReload={onRoundEdit}
           people={people}
         />
         <StyledPie
           data={pieChartData}
           label={({ dataEntry }) => dataEntry.title}
         />
-      </div>
+      </StyledAddRoundForm>
     </StyledDiv>
   );
 }
