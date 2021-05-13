@@ -5,8 +5,12 @@ import NavBar from "./components/NavBar";
 import PersonList from "./components/PersonList";
 import PersonCard from "./components/PersonCard";
 // import { Switch, Route } from "react-router-dom";
-// import styled from "styled-components";
+import {ThemeProvider} from "styled-components";
+import {useDarkMode} from './components/useDarkMode'
+import { GlobalStyles } from './components/Globalstyles'
+import { lightTheme, darkTheme } from './components/DarkModeTheme'
 import { useState, useEffect } from "react";
+import Toggle from './components/ToggleDarkMode'
 // import { render } from "react-dom";
 
 function App() {
@@ -15,6 +19,10 @@ function App() {
   const [currentP, setCurrentP] = useState(null);
   const [roundsArr, setRoundsArr] = useState([]);
   const [personRoundsArr, setPersonRoundsArr] = useState([]);
+  const [theme, themeToggler, mountedComponent] = useDarkMode();
+
+  const themeMode = theme === 'light' ? lightTheme : darkTheme
+
   useEffect(() => {
     fetch("http://localhost:9393/people")
       .then((res) => res.json())
@@ -71,25 +79,32 @@ function App() {
     setPeopleArr([...peopleArr, data])
   }
 
+  if(!mountedComponent) return <div/> 
   return (
-    <div className="App">
-      <NavBar />
-      <div>
-        <PersonList
-          onCurrentP={handleCurrentP}
-          people={peopleArr}
-        />
-        <AddPersonForm onAddPerson={handleAddPerson} />
-      </div>
-        <PersonCard
-          onForceReload={forceReload}
-          person={currentP}
-          people={peopleArr}
-          roundsArr={roundsArr}
-          onDeleteRound={handleDeleteRound}
-          personRounds={personRoundsArr}
-        />
-    </div>
+    <ThemeProvider theme={themeMode}>
+      <>
+        <GlobalStyles/>
+          <div className="App">
+            <Toggle theme={theme} toggleTheme={themeToggler}/>
+            <NavBar />
+            <div>
+              <PersonList
+                onCurrentP={handleCurrentP}
+                people={peopleArr}
+              />
+              <AddPersonForm onAddPerson={handleAddPerson} />
+            </div>
+              <PersonCard
+                onForceReload={forceReload}
+                person={currentP}
+                people={peopleArr}
+                roundsArr={roundsArr}
+                onDeleteRound={handleDeleteRound}
+                personRounds={personRoundsArr}
+              />
+          </div>
+      </>
+    </ThemeProvider>
   );
 }
 

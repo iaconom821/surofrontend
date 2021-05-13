@@ -1,4 +1,8 @@
 import RoundEditForm from './RoundEditForm'
+import styled from 'styled-components'
+
+const StyledButton = styled.button`
+  border-radius: 2px;`
 
 function RoundsPurchased({
   rounds,
@@ -32,9 +36,9 @@ function RoundsPurchased({
         <h2>{namesOfDrinkers}</h2>
         <h3>${round.price}</h3>
 
-        <button onClick={onDeleteRound} value={round.id}>
+        <StyledButton onClick={onDeleteRound} value={round.id}>
           Delete
-        </button>
+        </StyledButton>
         {<RoundEditForm id = {round.id}/>}
       </div>
     );
