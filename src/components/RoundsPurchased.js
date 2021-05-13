@@ -1,8 +1,9 @@
-import RoundEditForm from './RoundEditForm'
-import styled from 'styled-components'
+import RoundEditForm from "./RoundEditForm";
+import styled from "styled-components";
 
 const StyledButton = styled.button`
-  border-radius: 2px;`
+  border-radius: 2px;
+`;
 
 function RoundsPurchased({
   rounds,
@@ -10,8 +11,8 @@ function RoundsPurchased({
   personRounds,
   people,
   person,
+  onRoundEdit,
 }) {
-
   const filteredRounds = rounds.filter(
     (round) => round.person_id === person.id
   );
@@ -29,7 +30,6 @@ function RoundsPurchased({
     const namesOfDrinkers = userAndDrinkers
       .filter((drinker) => person.name !== drinker)
       .join(" , ");
-    
 
     return (
       <div key={round.id}>
@@ -39,13 +39,11 @@ function RoundsPurchased({
         <StyledButton onClick={onDeleteRound} value={round.id}>
           Delete
         </StyledButton>
-        {<RoundEditForm id = {round.id}/>}
+        <RoundEditForm id={round.id} onRoundEdit={onRoundEdit} />
       </div>
     );
   });
 
-  return <div>
-        {roundsButton}
-        </div>;
+  return <div>{roundsButton}</div>;
 }
 export default RoundsPurchased;

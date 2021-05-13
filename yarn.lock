@@ -9326,6 +9326,11 @@
   dependencies:
     "safe-buffer" "^5.1.0"
 
+"randomcolor@^0.6.2":
+  "integrity" "sha512-Mn6TbyYpFgwFuQ8KJKqf3bqqY9O1y37/0jgSK/61PUxV4QfIMv0+K2ioq8DfOjkBslcjwSzRfIDEXfzA9aCx7A=="
+  "resolved" "https://registry.npmjs.org/randomcolor/-/randomcolor-0.6.2.tgz"
+  "version" "0.6.2"
+
 "randomfill@^1.0.3":
   "integrity" "sha512-87lcbR8+MhcWcUiQ+9e+Rwx8MyR2P7qnt15ynUlbm3TU/fjbgz4GsvfSUDTemtCCtVCqb4ZcEFlyPNTh9bBTLw=="
   "resolved" "https://registry.npmjs.org/randomfill/-/randomfill-1.0.4.tgz"
@@ -9426,6 +9431,11 @@
   "integrity" "sha512-sGbsJJIgkcPuJrRMvcUQiVSz5ZYtcedm5KD5dnNMksCxdA825O+SgH53x1gyMNl7LvGzFRWaqA7Y9dRNM4H+4A=="
   "resolved" "https://registry.npmjs.org/react-live-clock/-/react-live-clock-5.1.0.tgz"
   "version" "5.1.0"
+
+"react-minimal-pie-chart@^8.2.0":
+  "integrity" "sha512-RhrHzprJt3KfBe4L3sE0Ha6fj4kYcwQtesQgscnld9Umf64+nZnxxInycnbimKsbIjxJONv77JIZp+qRbJD+bA=="
+  "resolved" "https://registry.npmjs.org/react-minimal-pie-chart/-/react-minimal-pie-chart-8.2.0.tgz"
+  "version" "8.2.0"
 
 "react-moment@1.1.1":
   "integrity" "sha512-WjwvxBSnmLMRcU33do0KixDB+9vP3e84eCse+rd+HNklAMNWyRgZTDEQlay/qK6lcXFPRuEIASJTpEt6pyK7Ww=="
