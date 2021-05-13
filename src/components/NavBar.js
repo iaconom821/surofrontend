@@ -1,10 +1,15 @@
 // name of app on top and logo 
-import {styled} from "styled-components"
+import styled from "styled-components"
 
+const StyledH1 = styled.h1`
+    background-color: whitesmoke;
+    color: darkgray;
+    margin: 0px;
+    padding: 4px;`
 
 function NavBar() {
 
-    return <h1>SquareUp and RoundOut</h1> 
+    return <StyledH1>SquareUp and RoundOut</StyledH1> 
 }
 
 export default NavBar

@@ -1,19 +1,18 @@
-import logo from "./logo.svg";
+
 import "./App.css";
 import AddPersonForm from "./components/AddPersonForm";
-import AddRoundForm from "./components/AddRoundForm";
 import NavBar from "./components/NavBar";
 import PersonList from "./components/PersonList";
 import PersonCard from "./components/PersonCard";
-import { Switch, Route } from "react-router-dom";
-import styled from "styled-components";
+// import { Switch, Route } from "react-router-dom";
+// import styled from "styled-components";
 import { useState, useEffect } from "react";
-import { render, unstable_renderSubtreeIntoContainer } from "react-dom";
+// import { render } from "react-dom";
 
 function App() {
   const [reload, setReload] = useState(true);
   const [peopleArr, setPeopleArr] = useState([]);
-  const [currentP, setCurrentP] = useState(0);
+  const [currentP, setCurrentP] = useState(null);
   const [roundsArr, setRoundsArr] = useState([]);
   const [personRoundsArr, setPersonRoundsArr] = useState([]);
   useEffect(() => {
@@ -28,28 +27,50 @@ function App() {
       .then((personRounds) => setPersonRoundsArr(personRounds));
   }, [reload]);
 
-  function handleClickPerson() {
-    console.log("hello");
-    setReload(!reload);
-  }
-  function forceReload() {
-    console.log("reloaded");
-    setReload(!reload);
+  // function handleClickPerson() {
+  //   console.log("hello");
+  //   setReload(!reload);
+  // }
+  function forceReload(data) {
+    setRoundsArr([...roundsArr, data[0].newRound]);
+    setPeopleArr(peopleArr.map(pep => {
+      if(pep.id === data[1].person.id){
+        return data[1].person
+      } else{
+        return pep
+      }
+    }));
+    setCurrentP(data[1].person)
+    setPersonRoundsArr([...personRoundsArr, ...data[2]])
   }
   function handleCurrentP(id) {
-    setCurrentP(id);
+    const thisP = peopleArr.find(person => person.id === parseInt(id))
+    setCurrentP(thisP);
   }
+  
 
   function handleDeleteRound(e) {
     fetch(`http://localhost:9393/rounds/${e.target.value}`, {
       method: "DELETE",
     }).then(() => {
+      // let newCurrentP = currentP
+      // newCurrentP.total = newCurrentP.total - roundsArr.find(round => round.id === e.target.value).price 
+      // newCurrentP.balance = 
       setRoundsArr(
         roundsArr.filter((round) => round.id !== parseInt(e.target.value))
       );
+      setPersonRoundsArr(
+        personRoundsArr.filter((personRound) => personRound.round_id !== parseInt(e.target.value))
+      )
+      
       setReload(!reload);
     });
   }
+
+  function handleAddPerson(data) {
+    setPeopleArr([...peopleArr, data])
+  }
+
   return (
     <div className="App">
       <NavBar />
@@ -57,11 +78,9 @@ function App() {
         <PersonList
           onCurrentP={handleCurrentP}
           people={peopleArr}
-          onClickPerson={handleClickPerson}
         />
-        <AddPersonForm onForceReload={forceReload} />
+        <AddPersonForm onAddPerson={handleAddPerson} />
       </div>
-      <div>
         <PersonCard
           onForceReload={forceReload}
           person={currentP}
@@ -70,7 +89,6 @@ function App() {
           onDeleteRound={handleDeleteRound}
           personRounds={personRoundsArr}
         />
-      </div>
     </div>
   );
 }

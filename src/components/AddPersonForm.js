@@ -1,6 +1,6 @@
 //Form to add a person, it only needs the person's name, make it a hidden form
 import { useState } from "react";
-function AddPersonForm({ onForceReload }) {
+function AddPersonForm({ onAddPerson }) {
   const [name, setName] = useState("");
   function handleSubmit(e) {
     e.preventDefault();
@@ -8,7 +8,8 @@ function AddPersonForm({ onForceReload }) {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({ name: name }),
-    }).then((res) => onForceReload());
+    }).then((res) => res.json())
+    .then(data => onAddPerson(data));
     setName("");
   }
   return (

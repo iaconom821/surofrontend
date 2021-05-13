@@ -7,13 +7,13 @@
 import Select from "react-select";
 import { useState } from "react";
 
-function AddRoundForm({ people, onForceReload, id }) {
+function AddRoundForm({ people, onForceReload, person }) {
   const [roundPrice, setRoundPrice] = useState("");
   const [peopleDrinking, setPeopleDrinking] = useState([]);
 
-  const filterArr = people.filter((person) => person.id !== id);
-  const selectPeople = filterArr.map((person) => {
-    return { value: `${person.id}`, label: `${person.name}` };
+  const filterArr = people.filter((pers) => pers.id !== person.id);
+  const selectPeople = filterArr.map((pers) => {
+    return { value: `${pers.id}`, label: `${pers.name}` };
   });
   function handleSelections(e) {
     setPeopleDrinking(e.map((val) => val.value));
@@ -25,15 +25,19 @@ function AddRoundForm({ people, onForceReload, id }) {
       headers: { "content-type": "application/json" },
       body: JSON.stringify({
         price: roundPrice,
-        person_id: id,
+        person_id: person.id,
         people_drinking: peopleDrinking,
       }),
-    }).then((res) => onForceReload());
+    }).then((res) => res.json())
+    .then(data => {
+        onForceReload(data)}
+        );
     setRoundPrice("");
-
     setPeopleDrinking([]);
   }
-  return (
+  return ( <>
+    <h2>Add A Round Of Drinks</h2>
+    <br/>
     <form onSubmit={handleSubmit}>
       <input
         type="number"
@@ -46,6 +50,7 @@ function AddRoundForm({ people, onForceReload, id }) {
       <Select isMulti options={selectPeople} onChange={handleSelections} />
       <input type="submit" value="Buy The Round" />
     </form>
+    </>
   );
 }
 
