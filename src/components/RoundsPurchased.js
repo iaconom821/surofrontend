@@ -63,7 +63,7 @@ function RoundsPurchased({
 
     return (
       <StyledRoundCard key={round.id}>
-        <h5>You bought the round for {namesOfDrinkers}</h5>
+        <h6>You bought the round for {namesOfDrinkers}</h6>
         <h5>Round Price ${round.price}</h5>
 
         <RoundEditForm id={round.id} onRoundEdit={onRoundEdit} />

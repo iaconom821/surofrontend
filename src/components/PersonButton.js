@@ -10,6 +10,7 @@ const StyledButton = styled.button`
   cursor: pointer;
   color: ${({ theme }) => theme.toggleBorder};
   background-color: ${({ theme }) => theme.background};
+  width: 160px;
   `
 
 function PersonButton({ person, onCurrentP }) {

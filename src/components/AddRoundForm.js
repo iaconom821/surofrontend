@@ -2,9 +2,13 @@ import Select from "react-select";
 import { useState } from "react";
 import styled from 'styled-components'
 
+const StyledInput = styled.input`
+  margin: 4px;
+  border-radius: 2px;`
+
 const StyledSubmitInput = styled.input`
   margin: auto;
-  margin-top: 2px;
+  margin-top: 4px;
   margin-bottom: 2px;
   width: 150px;
   text-align: center;
@@ -53,7 +57,7 @@ function AddRoundForm({ people, onForceReload, person }) {
     <h2>Add A Round Of Drinks</h2>
     <br/>
     <form onSubmit={handleSubmit}>
-      <input
+      <StyledInput
         type="number"
         placeholder="Price for Round"
         value={roundPrice}

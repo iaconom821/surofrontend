@@ -2,6 +2,9 @@
 import { useState } from "react";
 import styled from 'styled-components'
 
+const StyledInput = styled.input`
+  border-radius: 2px;`
+
 const StyledSubmitInput = styled.input`
   margin: auto;
   margin-top: 2px;
@@ -29,7 +32,8 @@ function AddPersonForm({ onAddPerson }) {
   }
   return (
     <form onSubmit={handleSubmit}>
-      <input
+      <StyledInput
+        required 
         type="text"
         placeholder="Name"
         value={name}

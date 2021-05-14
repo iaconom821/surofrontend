@@ -5,8 +5,8 @@ import PersonButton from "./PersonButton";
 
 const StyledDiv = styled.div`
   border-radius: 6px;
-  display: flex;
-  justify-content: center;`
+  justify-content: center;
+  width: 1100px;`
 
 
 

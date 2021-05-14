@@ -9,7 +9,7 @@ const StyledClock = styled(Clock)`
 export default class ClockComponent extends React.Component {
   render() {
     return (
-      <StyledClock format={"hh:mm A"} ticking={true} timezone={"US/Eastern"} />
+      <StyledClock format={"hh:mm:ss A"} ticking={true} timezone={"US/Eastern"} />
     );
   }
 }
