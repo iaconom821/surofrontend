@@ -1,11 +1,25 @@
-// Form to add a round of drinks
-// needs dropdown of people who are drinking and a way to select each person
-// name of drink
-// price of drinks
-// multiply by people in the round
-// option to expand form and add specific drinks for people
 import Select from "react-select";
 import { useState } from "react";
+import styled from 'styled-components'
+
+const StyledSubmitInput = styled.input`
+  margin: auto;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  width: 150px;
+  text-align: center;
+  padding: 0px;
+  align-items: center;
+  color: ${({ theme }) => theme.toggleBorder};
+  background-color: ${({ theme }) => theme.background};
+  border-radius: 2px;
+  cursor: pointer;`
+
+const selectStyles = {
+  option: (provided) => ({
+    ...provided,
+    color: 'gray',
+  })}
 
 function AddRoundForm({ people, onForceReload, person }) {
   const [roundPrice, setRoundPrice] = useState("");
@@ -47,8 +61,8 @@ function AddRoundForm({ people, onForceReload, person }) {
         onChange={(e) => setRoundPrice(e.target.value)}
         required
       />
-      <Select isMulti options={selectPeople} onChange={handleSelections} />
-      <input type="submit" value="Buy The Round" />
+      <Select styles={selectStyles} isMulti options={selectPeople} onChange={handleSelections} />
+      <StyledSubmitInput type="submit" value="Buy The Round" />
     </form>
     </>
   );

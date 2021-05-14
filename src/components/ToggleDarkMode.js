@@ -4,15 +4,17 @@ import styled from 'styled-components'
 
 const Button = styled.button `
     background: ${({ theme }) => theme.text};
-    border: 2px solid ${({ theme }) => theme.toggleBorder};
+    border: 4px solid ${({ theme }) => theme.toggleBorder};
     color: ${({ theme }) => theme.body};
-    border-radius: 3px;
-    cursor: pointer;`
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+`
 
 const Toggle = ({ theme, toggleTheme }) => {
     return(
         <Button onClick={toggleTheme}>
-            Toggle Mode 
+            {theme === 'light' ? "Dark Mode" : "Light Mode"} 
         </Button>)
 }
 

@@ -1,7 +1,6 @@
 import ClockComponent from "./Clock";
 import AddRoundForm from "./AddRoundForm";
 import RoundsPurchased from "./RoundsPurchased";
-import { useState, useEffect } from "react";
 import styled from "styled-components";
 import { PieChart } from "react-minimal-pie-chart";
 import randomColor from "randomcolor";
@@ -12,8 +11,9 @@ const StyledDiv = styled.div`
   justify-content: center;
 `;
 const StyledPie = styled(PieChart)`
-  font-size: 5px;
+  font-size: 3px;
   text-align: center;
+  height: 400px;
 `;
 const StyledPersonDiv = styled.div`
   width: 840px;
@@ -25,7 +25,7 @@ const StyledPersonCardDiv = styled.div`
   border-radius: 4px;`
 
 const StyledRoundsPurchasedDiv = styled.div`
-  height: 200px;
+  height: 500px;
   overflow: auto;
   display: flex;`
 
