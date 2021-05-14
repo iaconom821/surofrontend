@@ -1,5 +1,20 @@
 //Form to add a person, it only needs the person's name, make it a hidden form
 import { useState } from "react";
+import styled from 'styled-components'
+
+const StyledSubmitInput = styled.input`
+  margin: auto;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  width: 100px;
+  text-align: center;
+  padding: 0px;
+  align-items: center;
+  color: ${({ theme }) => theme.toggleBorder};
+  background-color: ${({ theme }) => theme.background};
+  border-radius: 2px;
+  cursor: pointer;`
+
 function AddPersonForm({ onAddPerson }) {
   const [name, setName] = useState("");
   function handleSubmit(e) {
@@ -20,7 +35,7 @@ function AddPersonForm({ onAddPerson }) {
         value={name}
         onChange={(e) => setName(e.target.value)}
       />
-      <input type="submit" value="Add Drinker" />
+      <StyledSubmitInput type="submit" value="Add Drinker" />
     </form>
   );
 }

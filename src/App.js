@@ -4,16 +4,18 @@ import NavBar from "./components/NavBar";
 import PersonList from "./components/PersonList";
 import PersonCard from "./components/PersonCard";
 // import { Switch, Route } from "react-router-dom";
-import { ThemeProvider } from "styled-components";
+import styled, { ThemeProvider } from "styled-components";
 import { useDarkMode } from "./components/useDarkMode";
 import { GlobalStyles } from "./components/Globalstyles";
 import { lightTheme, darkTheme } from "./components/DarkModeTheme";
 import { useState, useEffect } from "react";
 import Toggle from "./components/ToggleDarkMode";
-// import { render } from "react-dom";
+
+const StyledDiv = styled.div`
+  text-align: center;`
+
 
 function App() {
-  const [reload, setReload] = useState(true);
   const [peopleArr, setPeopleArr] = useState([]);
   const [currentP, setCurrentP] = useState(null);
   const [roundsArr, setRoundsArr] = useState([]);
@@ -32,12 +34,8 @@ function App() {
     fetch("http://localhost:9393/person_rounds")
       .then((res) => res.json())
       .then((personRounds) => setPersonRoundsArr(personRounds));
-  }, [reload]);
+  }, []);
 
-  // function handleClickPerson() {
-  //   console.log("hello");
-  //   setReload(!reload);
-  // }
   function handleRoundEdit(roundAndPRArr) {
     setRoundsArr(roundAndPRArr[0]);
     setPersonRoundsArr(roundAndPRArr[1]);
@@ -45,12 +43,6 @@ function App() {
     setCurrentP(roundAndPRArr[2].find((person) => person.id === currentP.id));
   }
 
-  // function forceReload(roundAndPRArr) {
-  //   setRoundsArr(roundAndPRArr[0]);
-  //   setPersonRoundsArr(roundAndPRArr[1]);
-  //   setPeopleArr(roundAndPRArr[2]);
-  //   setCurrentP(roundAndPRArr[2].find((person) => person.id === currentP.id));
-  // }
   function handleCurrentP(id) {
     console.log(peopleArr)
     const thisP = peopleArr.find((person) => person.id === parseInt(id));
@@ -79,8 +71,10 @@ function App() {
       <>
         <GlobalStyles />
         <div className="App">
-          <Toggle theme={theme} toggleTheme={themeToggler} />
+          <StyledDiv>
           <NavBar />
+          <Toggle theme={theme} toggleTheme={themeToggler} />
+          </StyledDiv>
           <div>
             <PersonList onCurrentP={handleCurrentP} people={peopleArr} />
             <AddPersonForm onAddPerson={handleAddPerson} />

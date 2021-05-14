@@ -4,7 +4,13 @@ import styled from 'styled-components'
 
 const StyledButton = styled.button`
   margin: 3px;
-  border-radius: 3px;`
+  border-radius: 3px;
+  padding: 6px;
+  font-size: 15px;
+  cursor: pointer;
+  color: ${({ theme }) => theme.toggleBorder};
+  background-color: ${({ theme }) => theme.background};
+  `
 
 function PersonButton({ person, onCurrentP }) {
   function HelpDaClick() {

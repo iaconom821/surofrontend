@@ -2,8 +2,22 @@ import RoundEditForm from "./RoundEditForm";
 import styled from "styled-components";
 
 const StyledButton = styled.button`
+  margin: auto;
+  margin-top: 2px;
+  margin-bottom: 3px;
+  width: 50px;
+  text-align: center;
+  padding: 0px;
+  align-items: center;
+  color: ${({ theme }) => theme.toggleBorder};
+  background-color: ${({ theme }) => theme.background};
   border-radius: 2px;
-`;
+  cursor: pointer;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin-right: 3px;
+`
 
 const StyledRoundsContainer = styled.div`
   padding: 5px;
@@ -12,8 +26,14 @@ const StyledRoundsContainer = styled.div`
   justify-content: center;`
 
 const StyledRoundCard = styled.div`
-  width: 200px;
-  padding: 5px;`
+  width: 160px;
+  border: 2px solid darkgray;
+  padding: 3px;
+  border-radius: 4px;
+  height: 240px;
+  align-items: center;
+  margin: 2px;
+  position: relative;`
 
 function RoundsPurchased({
   rounds,
@@ -44,12 +64,12 @@ function RoundsPurchased({
     return (
       <StyledRoundCard key={round.id}>
         <h5>You bought the round for {namesOfDrinkers}</h5>
-        <h6>Round Price ${round.price}</h6>
+        <h5>Round Price ${round.price}</h5>
 
+        <RoundEditForm id={round.id} onRoundEdit={onRoundEdit} />
         <StyledButton onClick={onDeleteRound} value={round.id}>
           Delete
         </StyledButton>
-        <RoundEditForm id={round.id} onRoundEdit={onRoundEdit} />
       </StyledRoundCard>
     );
   });

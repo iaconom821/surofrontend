@@ -3,7 +3,8 @@ import styled from "styled-components"
 
 const StyledH1 = styled.h1`
     margin: 0px;
-    padding: 6px;`
+    padding: 6px;
+    display: inline;`
 
 function NavBar() {
 

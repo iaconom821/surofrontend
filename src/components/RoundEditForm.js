@@ -11,8 +11,24 @@ const StyledInput = styled.input`
   align-items: center;
   `
 
+const StyledSubmitInput = styled.input`
+  margin: auto;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  width: 50px;
+  text-align: center;
+  padding: 0px;
+  align-items: center;
+  color: ${({ theme }) => theme.toggleBorder};
+  background-color: ${({ theme }) => theme.background};
+  border-radius: 2px;
+  cursor: pointer;`
+
 const StyledForm = styled.form`
-  `
+  position: absolute;
+  bottom: 25px;
+  right: 0;
+  margin-right: 3px;`
 
 function RoundEditForm({ id, onRoundEdit }) {
   const [newPrice, setNewPrice] = useState(0);
@@ -39,7 +55,7 @@ function RoundEditForm({ id, onRoundEdit }) {
         value={newPrice}
         onChange={(e) => setNewPrice(e.target.value)}
       />
-      <StyledInput type="submit" value="Update" />
+      <StyledSubmitInput type="submit" value="Update" />
     </StyledForm>
   );
 }
