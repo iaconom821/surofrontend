@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styled from 'styled-components'
+import BACKEND_URL from './Url.js'
 
 const StyledInput = styled.input`
   margin: auto;
@@ -38,7 +39,7 @@ function RoundEditForm({ id, onRoundEdit }) {
   function onUpdateRound(e) {
     e.preventDefault();
 
-    fetch(`http://localhost:9393/rounds/${id}`, {
+    fetch(`${BACKEND_URL}/rounds/${id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ price: newPrice }),

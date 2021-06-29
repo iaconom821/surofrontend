@@ -1,9 +1,10 @@
-//Form to add a person, it only needs the person's name, make it a hidden form
+//Form to add a person, it only needs the person's name
 import { useState } from "react";
-import styled from 'styled-components'
+import styled from "styled-components";
 
 const StyledInput = styled.input`
-  border-radius: 2px;`
+  border-radius: 2px;
+`;
 
 const StyledSubmitInput = styled.input`
   margin: auto;
@@ -16,7 +17,8 @@ const StyledSubmitInput = styled.input`
   color: ${({ theme }) => theme.toggleBorder};
   background-color: ${({ theme }) => theme.background};
   border-radius: 2px;
-  cursor: pointer;`
+  cursor: pointer;
+`;
 
 function AddPersonForm({ onAddPerson }) {
   const [name, setName] = useState("");
@@ -26,14 +28,15 @@ function AddPersonForm({ onAddPerson }) {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({ name: name }),
-    }).then((res) => res.json())
-    .then(data => onAddPerson(data));
+    })
+      .then((res) => res.json())
+      .then((data) => onAddPerson(data));
     setName("");
   }
   return (
     <form onSubmit={handleSubmit}>
       <StyledInput
-        required 
+        required
         type="text"
         placeholder="Name"
         value={name}

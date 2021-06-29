@@ -1,6 +1,7 @@
 import Select from "react-select";
 import { useState } from "react";
 import styled from 'styled-components'
+import BACKEND_URL from './Url.js'
 
 const StyledInput = styled.input`
   margin: 4px;
@@ -38,7 +39,7 @@ function AddRoundForm({ people, onForceReload, person }) {
   }
   function handleSubmit(e) {
     e.preventDefault();
-    fetch("http://localhost:9393/rounds", {
+    fetch(`${BACKEND_URL}rounds`, {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({

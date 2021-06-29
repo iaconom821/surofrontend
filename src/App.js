@@ -10,6 +10,7 @@ import { GlobalStyles } from "./components/Globalstyles";
 import { lightTheme, darkTheme } from "./components/DarkModeTheme";
 import { useState, useEffect } from "react";
 import Toggle from "./components/ToggleDarkMode";
+import BACKEND_URL from "./components/Url.js"
 
 const StyledDiv = styled.div`
   text-align: center;`
@@ -25,13 +26,13 @@ function App() {
   const themeMode = theme === "light" ? lightTheme : darkTheme;
 
   useEffect(() => {
-    fetch("http://localhost:9393/people")
+    fetch(`${BACKEND_URL}people`)
       .then((res) => res.json())
       .then((people) => setPeopleArr(people));
-    fetch("http://localhost:9393/rounds")
+    fetch(`${BACKEND_URL}rounds`)
       .then((res) => res.json())
       .then((rounds) => setRoundsArr(rounds));
-    fetch("http://localhost:9393/person_rounds")
+    fetch(`${BACKEND_URL}person_rounds`)
       .then((res) => res.json())
       .then((personRounds) => setPersonRoundsArr(personRounds));
   }, []);
@@ -50,7 +51,7 @@ function App() {
   }
 
   function handleDeleteRound(e) {
-    fetch(`http://localhost:9393/rounds/${e.target.value}`, {
+    fetch(`${BACKEND_URL}rounds/${e.target.value}`, {
       method: "DELETE",
     }).then(res => res.json())
      .then(roundAndPRArr => {

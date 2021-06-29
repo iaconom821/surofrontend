@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-
 import PersonButton from "./PersonButton";
 
 const StyledDiv = styled.div`

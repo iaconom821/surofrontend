@@ -14,12 +14,12 @@ const StyledButton = styled.button`
   `
 
 function PersonButton({ person, onCurrentP }) {
-  function HelpDaClick() {
+  function handleClick() {
     onCurrentP(person.id);
   
   }
 
-  return <StyledButton onClick={HelpDaClick}>{person.name}</StyledButton>;
+  return <StyledButton onClick={handleClick}>{person.name}</StyledButton>;
 }
 
 export default PersonButton;
